@@ -21,7 +21,7 @@
 \title{Monades, Comonades et Automates cellulaires}
 \author{Jérémy S. Cochoy}
 \institute{INRIA Paris-Saclay}
-\date{Octobre 2015}
+\date{Décembre 2015}
 
 
 \begin{frame}
@@ -29,14 +29,9 @@
 \end{frame}
 
 \begin{frame}
-  \begin{columns}[t]
-  \begin{column}{5cm}
-  \tableofcontents[sections={1-3}]
-  \end{column}
-  \begin{column}{5cm}
-  \tableofcontents[sections={4-8}]
-  \end{column}
-  \end{columns}
+  \frametitle{Sommaire}
+  \setcounter{tocdepth}{1}
+  \tableofcontents
 \end{frame}
 
 \begin{frame}
@@ -63,17 +58,15 @@
 \begin{block}{Construire son type :}
 \begin{itemize}
 \item Trival = Plus | Minus | Zero
-\item Box a = InABox a
 \item Maybe a = Just a | Nothing
 \end{itemize}
 \end{block}
 
 \pause
 
-Just, Nothing, InABox etc portent le doux nom de \emph{constructeur de type}. C'est aussi le cas de \emph{[]}.
+Just, Nothing, Plus etc portent le doux nom de \emph{constructeur de type}. C'est aussi le cas de \emph{[]}.
 \end{frame}
 
-\subsection{Fonctions}
 \begin{frame}
 \frametitle{Les fonctions}
 \begin{block}{}
@@ -142,8 +135,7 @@ La collection de tous les types forme une catégorie. Les flèches sont les fonc
 
 \begin{exampleblock}{}
 \begin{itemize}
-\item fmap (+2) :: F Int -> F Int
-\item fmap id :: F a -> F a
+\item fmap (+2) :: [Float] -> [Int]
 \end{itemize}
 \end{exampleblock}
 \end{frame}
@@ -232,7 +224,6 @@ L'exemple de Maybe : \verb!Nothing!
 	\begin{itemize}
 		\item Just
 		\item (: [])
-		\item Right
 	\end{itemize}
 \end{exampleblock}
 \end{frame}
@@ -376,19 +367,6 @@ Que faire d'un \verb!M (M c)!?
 \end{block}
 \end{frame}
 
-\begin{frame}
-\frametitle{Combien d'automates cellulaires différents?}
-\begin{block}{On a le choix :}
-	\begin{itemize}
-	\item De la dimension de la grille,
-	\item Des lois,
-	\item Du nombres d'états (couleurs),
-	\item De la forme du voisinages (boules de rayon r, etc.),
-	\item De ne pas être déterministe.
-	\end{itemize}
-\end{block}
-\end{frame}
-
 \subsection{Le jeu de la vie}
 \begin{frame}
 \frametitle{The "Game of Life"}
@@ -489,7 +467,7 @@ Que faire d'un \verb!M (M c)!?
 \end{center}
 
 \begin{block}{Un ruban}
-On représente l'univers dans lequel vie notre automate par un ruban, que l'on voit comme trois parties :
+On représente l'univers dans lequel vit notre automate par un ruban, que l'on voit comme trois parties :
 
 \begin{itemize}
 \item La partie infinie à gauche
@@ -567,8 +545,6 @@ On veut construire un univers où chaque case du ruban contient elle-même... un
 duplicate :: Universe a -> Universe (Universe a)
 \end{block}
 \end{frame}
-
-\subsection{Evaluation}
 
 \begin{frame}
 \frametitle{Loi de convolution}
